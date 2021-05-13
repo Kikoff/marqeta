@@ -51,8 +51,13 @@ module Marqeta
 
     attr_reader :endpoint
 
+    # TODO: Change this to just raise NotImplementedError after backend is updated to use CoreAPICaller
     def resource
-      raise NotImplementedError
+      @resource ||= RestClient::Resource.new(
+        Marqeta.configuration.base_url + endpoint,
+        Marqeta.configuration.username,
+        Marqeta.configuration.password
+      )
     end
 
     def logger
