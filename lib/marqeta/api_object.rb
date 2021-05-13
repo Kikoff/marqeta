@@ -1,4 +1,5 @@
-require 'marqeta/api_caller'
+require 'marqeta/core_api_caller'
+require 'marqeta/diva_api_caller'
 
 module Marqeta
   class ApiObject

@@ -1,5 +1,5 @@
-describe Marqeta::ApiCaller do
-  subject(:api_caller) { Marqeta::ApiCaller.new(endpoint, params) }
+describe Marqeta::CoreApiCaller do
+  subject(:api_caller) { Marqeta::CoreApiCaller.new(endpoint, params) }
 
   let(:endpoint) { 'foo' }
   let(:params) { {} }
@@ -10,22 +10,13 @@ describe Marqeta::ApiCaller do
 
     it 'sets final endpoint as regular endpoint if no params' do
       expect(final_endpoint).to eq(endpoint)
-      expect(api_caller.send(:resource).url).to eq "www.foo.com#{endpoint}"
     end
 
-    context 'params are passed in' do
+    context 'when params are passed in' do
       let(:params) { { foo: 'bar', biz: 'biz:baz' } }
 
       it 'sets final endpoint to have the params URI encoded' do
         expect(final_endpoint).to eq("#{endpoint}?foo=bar&biz=biz%3Abaz")
-      end
-    end
-
-    context 'diva endpoint' do
-      let(:params) { { diva_api: true } }
-
-      it 'set the base url to the diva endpoint' do
-        expect(api_caller.send(:resource).url).to eq "www.diva-api.com#{endpoint}"
       end
     end
   end
