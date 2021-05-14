@@ -1,6 +1,5 @@
-# TODO: Delete this after backend is updated to use CoreApiCaller
-describe Marqeta::ApiCaller do
-  subject(:api_caller) { Marqeta::ApiCaller.new(endpoint, params) }
+describe Marqeta::CoreApiCaller do
+  subject(:api_caller) { Marqeta::CoreApiCaller.new(endpoint, params) }
 
   let(:endpoint) { 'foo' }
   let(:params) { {} }

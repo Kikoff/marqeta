@@ -14,6 +14,8 @@ module Marqeta
       :password,
       :base_url,
       :diva_url,
+      :diva_app_token,
+      :diva_access_token,
       :logger,
       :webhook_endpoint,
       :webhook_username,

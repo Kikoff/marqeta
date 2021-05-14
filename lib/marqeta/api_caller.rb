@@ -6,9 +6,6 @@ module Marqeta
   class ApiCaller
     def initialize(endpoint, params = {})
       @endpoint = endpoint
-      @diva_api = params[:diva_api]
-
-      params.delete(:diva_api)
       @endpoint += "?#{URI.encode_www_form(params)}" if params.any?
     end
 
@@ -54,11 +51,10 @@ module Marqeta
 
     attr_reader :endpoint
 
+    # TODO: Change this to just raise NotImplementedError after backend is updated to use CoreAPICaller
     def resource
-      base_url = @diva_api ? Marqeta.configuration.diva_url : Marqeta.configuration.base_url
-
       @resource ||= RestClient::Resource.new(
-        base_url + endpoint,
+        Marqeta.configuration.base_url + endpoint,
         Marqeta.configuration.username,
         Marqeta.configuration.password
       )
